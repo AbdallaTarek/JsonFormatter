@@ -1,65 +1,88 @@
 # JSON · Log Formatter
 
-Paste a raw request/response log (or plain JSON) and read it comfortably.
+A fast, in-browser viewer for messy API logs and raw JSON. Paste a request/response log — or just a JSON body — and get a clean, collapsible, searchable tree instead of a wall of text.
 
-```bash
-npm install
-npm run dev              # http://localhost:5173
-npm test                 # parser, render and interaction tests (jsdom)
-npm run e2e              # drives real Chrome against the dev server + json.rtf
-npm run e2e -- --headful # …and watch it click
-npm run build            # static output in dist/
-```
+[![Deploy to GitHub Pages](https://github.com/AbdallaTarek/JsonFormatter/actions/workflows/deploy.yml/badge.svg)](https://github.com/AbdallaTarek/JsonFormatter/actions/workflows/deploy.yml)
+
+**Live demo → [abdallatarek.github.io/JsonFormatter](https://abdallatarek.github.io/JsonFormatter/)**
+
+Nothing you paste ever leaves your browser: parsing happens entirely client-side, and your last input is kept in `localStorage` so a refresh won't lose your work.
+
+## Screenshots
+
+**Tree view** — structured, syntax-highlighted, and collapsible
+
+![Tree view of a parsed JSON request/response](docs/screenshots/json-tree-view.png)
+
+**Raw view** — the same payload, cleanly re-indented
+
+![Raw formatted JSON view](docs/screenshots/json-raw-view.png)
 
 ## What it handles
 
-- **Log blocks** — strips the `│ ┌ └ ─` gutter, then pulls out method, URL, query params,
-  headers, status, status text and timing. Request and response with the same `[id]` are
-  paired into one card.
-- **Bare JSON** — paste just a body and it renders in the same tree.
-- **RTF** — paste straight from a `.rtf` (or drop the file in); it is unwrapped first.
-- **Broken JSON** — trailing commas, `//` comments and unquoted keys are auto-repaired
-  (flagged `repaired`); anything unrecoverable is shown as raw text with the failing line marked.
-- **Packed strings** — a value like `C1K~TS8~12~…~Margin#0^Markup#0^Fixed#0` gets a `⋯` toggle
-  that splits it into numbered parts on `~`, `^` and `####`. Positional only, so it works for
-  every model, not just this one.
+| Input | What happens |
+| --- | --- |
+| **Log block** | Strips the box-drawing gutter, then pulls out method, URL, query params, headers, status, and timing. A request and response sharing the same `[id]` are paired into one card. |
+| **Bare JSON** | Paste just a body and it renders straight into the tree. |
+| **RTF** | Paste directly from a `.rtf` file (or drop the file in) — it's unwrapped automatically before parsing. |
+| **Broken JSON** | Trailing commas, `//` comments, and unquoted keys are auto-repaired and flagged. Anything unrecoverable falls back to raw text with the failing line highlighted. |
+| **Packed strings** | Delimiter-separated values (e.g. `A~B~C`) get an expandable toggle that splits them into numbered parts — works positionally, for any format. |
 
-Input is kept in `localStorage`, so a refresh does not lose your paste.
+## Interacting with the tree
 
-## Collapsing
+- Click an arrow (or its key) to toggle a single node.
+- Shift-click an arrow to toggle that node and its sibling branches one level deep.
+- Shift-click a REQUEST/RESPONSE header to toggle an entire card at once.
+- Use **Expand all** / **Collapse all** in the toolbar to affect the whole tree.
+- Large payloads (300+ branches) load partially collapsed for performance, and searching always surfaces matches even if they're inside a collapsed branch.
 
-- **Click** an arrow (or the key next to it) — toggles that node only.
-- **Shift-click** an arrow — toggles that node **together with its siblings**, the branches sharing
-  its parent, one level deep. Shift-click one hotel and all 44 open; shift-click a
-  `cancellationPolicies` arrow inside hotel 0 and only hotel 0's own fields follow — the other 43
-  keep whatever state you left them in.
-- **Shift-click** a REQUEST/RESPONSE header — toggles every section of that card at once.
-- **Expand all / Collapse all** in the toolbar — the whole tree at once, roots included.
+A dedicated reading mode hides the paste box and page header so wide payloads get the full window; press `Esc` to return.
 
-Shift is the only modifier: one gesture, one meaning. Its direction is read from the group, not from
-the arrow you clicked — if any sibling is still closed the group opens, and only a fully open group
-collapses. That matters because a root always renders open, so reading its own state would collapse
-a tree you meant to expand.
+## Getting started
 
-A search always wins over the collapse state, so matches are never left hidden.
+Requires [Node.js](https://nodejs.org/) 20+.
 
-## Reading mode
+```bash
+npm install
+npm run dev        # starts the dev server at http://localhost:5173
+```
 
-The **⤢** button at the right of the toolbar hides the paste box and the page header so the results
-take the whole window — useful on wide payloads where a 38 % column wraps every line. **Esc** or the
-**⤡** button brings them back; the pasted text is untouched.
+### Testing
 
-Bodies with more than `AUTO_EXPAND_LIMIT` (300) branches load collapsed one level deep — the
-361 KB sample expands to ~69,000 DOM nodes and over a second of layout, which made every paste feel
-frozen. A note above the tree says how many nodes there are; shift-click walks it down one group at
-a time (~380 ms to open all 44 items on that payload).
+```bash
+npm test                  # parser, render, and interaction tests (jsdom)
+npm run e2e                # drives real Chrome against the dev server
+npm run e2e -- --headful   # ...and watch it run
+```
 
-## Layout
+### Production build
+
+```bash
+npm run build       # static output in dist/
+```
+
+## Project structure
 
 ```
-src/lib/rtf.js         RTF -> plain text
-src/lib/logParser.js   text -> transactions (gutter, sections, headers, bodies)
-src/lib/jsonParse.js   tolerant JSON.parse with repairs
-src/lib/delimited.js   packed-string detection and splitting
-src/components/        InputPane, Toolbar, TransactionCard, HeadersTable, JsonTree, DelimitedString
+src/
+├── lib/
+│   ├── rtf.js          # RTF → plain text
+│   ├── logParser.js     # text → transactions (gutter, sections, headers, bodies)
+│   ├── jsonParse.js     # tolerant JSON.parse with auto-repair
+│   └── delimited.js     # packed-string detection and splitting
+└── components/
+    ├── InputPane.jsx
+    ├── Toolbar.jsx
+    ├── TransactionCard.jsx
+    ├── HeadersTable.jsx
+    ├── JsonTree.jsx
+    └── DelimitedString.jsx
 ```
+
+## Tech stack
+
+React 19, Vite 7, Tailwind CSS, Vitest, and Puppeteer for end-to-end tests. Deployed automatically to GitHub Pages on every push to `main`.
+
+## Contributing
+
+Issues and pull requests are welcome. Please run `npm test` and `npm run e2e` before submitting a change.
