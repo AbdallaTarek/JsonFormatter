@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-08-09T11:50:52.113Z",
+  "projectRoot": "/Users/ntg/Development/SelfDev/JsonFormatter",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": false,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1786276252114
+}
