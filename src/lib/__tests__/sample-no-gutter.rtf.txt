@@ -1,0 +1,187 @@
+┌────────────────────────────────────────────────────────────
+ ➡️ REQUEST  [E5F6A7B8]
+ GET https://api.qa.example.com/v1/public/booking/api/v1/transfers/locations/pickup?lang=en
+ Headers:
+   Authorization: ••••••••
+   channel: mobile
+   x-api-key: ••••••••
+ Body:
+   <empty>
+ ⬅️ RESPONSE [E5F6A7B8]  •  200 no error • 136ms
+ Headers:
+   Accept-Language: en-US;q=1.0, fr-FR;q=0.9
+   Content-Length: 4190
+   Content-Type: application/json
+   Date: Sun, 15 Mar 2026 12:35:33 GMT
+   x-amz-apigw-id: Q7wErTyUiOpAsDf=
+   x-amzn-remapped-connection: keep-alive
+   x-amzn-remapped-date: Sun, 15 Mar 2026 12:35:33 GMT
+   x-amzn-requestid: 66666666-7777-8888-9999-000000000000
+   x-correlation-id: DEMO_aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+ Body:
+   [
+     {
+       "airportCode" : "NPT",
+       "id" : "1",
+       "identity" : {
+         "dataAnalytics" : "northport-international-airport",
+         "entityType" : "location",
+         "id" : "1",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/1"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : true,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 41.100000000000001,
+       "longitude" : -73.200000000000003,
+       "luggageId" : null,
+       "name" : "Northport International Airport - NIA",
+       "type" : "AIRPORT"
+     },
+     {
+       "id" : "6",
+       "identity" : {
+         "dataAnalytics" : "harbor-bay",
+         "entityType" : "location",
+         "id" : "6",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/6"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Harbor Bay Hotel - HBH",
+       "type" : "HOTEL"
+     },
+     {
+       "id" : "62",
+       "identity" : {
+         "dataAnalytics" : "Grand Vista Resort",
+         "entityType" : "location",
+         "id" : "62",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/62"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Grand Vista Resort",
+       "type" : "LOCATION"
+     },
+     {
+       "id" : "63",
+       "identity" : {
+         "dataAnalytics" : "Palm-Grove-Hotel",
+         "entityType" : "location",
+         "id" : "63",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/63"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Palm Grove Hotel",
+       "type" : "LOCATION"
+     },
+     {
+       "id" : "61",
+       "identity" : {
+         "dataAnalytics" : "Cliffside-Lodge",
+         "entityType" : "location",
+         "id" : "61",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/61"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Cliffside Lodge",
+       "type" : "Location"
+     },
+     {
+       "id" : "64",
+       "identity" : {
+         "dataAnalytics" : "Sunset-Dunes-Resort",
+         "entityType" : "location",
+         "id" : "64",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/64"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Sunset Dunes Resort",
+       "type" : "LOCATION"
+     },
+     {
+       "id" : "7",
+       "identity" : {
+         "dataAnalytics" : "coral-beach-club---cbc",
+         "entityType" : "location",
+         "id" : "7",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/7"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Coral Beach Club - CBC",
+       "type" : "LOCATION"
+     },
+     {
+       "id" : "37",
+       "identity" : {
+         "dataAnalytics" : "Lakeside-Nursery",
+         "entityType" : "location",
+         "id" : "37",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/37"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Lakeside Nursery",
+       "type" : "LOCATION"
+     },
+     {
+       "id" : "11",
+       "identity" : {
+         "dataAnalytics" : "Marina-Welcome-Center",
+         "entityType" : "location",
+         "id" : "11",
+         "path" : "\/content\/dam\/example\/en\/data\/mobility\/location\/11"
+       },
+       "isAerodrome" : false,
+       "isDisplayable" : false,
+       "isTransferDropOff" : true,
+       "isTransferPickUp" : true,
+       "latitude" : 0,
+       "longitude" : 0,
+       "luggageId" : null,
+       "name" : "Marina Welcome Center",
+       "type" : "LOCATION"
+     }
+   ]
+└────────────────────────────────────────────────────────────

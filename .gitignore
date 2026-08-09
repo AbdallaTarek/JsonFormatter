@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+
+# Captured API logs pasted in for debugging. These carry real request data,
+# so they stay local -- the checked-in fixtures under src/lib/__tests__ are
+# fictional stand-ins.
+*.rtf
+!src/lib/__tests__/*.rtf.txt
+
+# Editor / local tooling
+.vscode/
+.idea/
+.claude/
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Ruflo local secrets and runtime data
+.claude-flow/data/
+.claude-flow/logs/
+.claude-flow/sessions/
